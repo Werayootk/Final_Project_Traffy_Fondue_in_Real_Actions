@@ -1,4 +1,4 @@
 **/logs/
-**/raw/
-**/output/
+# **/raw/
+# **/output/
 **/__pycache__/

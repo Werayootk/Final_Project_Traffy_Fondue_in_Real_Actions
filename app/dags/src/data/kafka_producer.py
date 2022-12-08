@@ -42,7 +42,7 @@ def load_data_init(**kwargs):
     producer.close()
 
 def load_data_daily(**kwargs):
-    schema_file = os.getcwd()+kwargs['path_avsc']+"schema.avsc"
+    schema_file = os.getcwd()+kwargs['path_schema']+"schema.avsc"
     schema = avro.schema.parse(open(schema_file).read())
     kafka_broker = 'kafka:9092'
 

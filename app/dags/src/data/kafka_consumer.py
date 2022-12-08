@@ -44,7 +44,7 @@ def get_data_init(**kwargs):
         logging.info('Error: '+e)
 
 def update_data_daily(**kwargs):
-    schema_file = os.getcwd()+kwargs['path_avsc']+"schema.avsc"
+    schema_file = os.getcwd()+kwargs['path_schema']+"schema.avsc"
     schema = avro.schema.parse(open(schema_file).read())
     df = []
     kafka_broker = 'kafka:9092'
@@ -65,7 +65,7 @@ def update_data_daily(**kwargs):
         
         raw = pd.DataFrame(df)
         #print(raw)
-        raw.to_excel(open(os.getcwd()+kwargs['path_init']+"raw.xlsx", "wb"))
+        raw.to_excel(open(os.getcwd()+kwargs['path_update']+"raw.xlsx", "wb"))
 
     except Exception as e:
         print(e)
