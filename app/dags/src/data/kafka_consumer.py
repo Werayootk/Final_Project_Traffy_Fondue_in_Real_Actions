@@ -21,12 +21,11 @@ def get_data_init(**kwargs):
     df = []
     kafka_broker = 'kafka:9092'
     consumer = KafkaConsumer(
-        'data',                                # specify topic to consume from
+        'data',                                
         bootstrap_servers=[kafka_broker],
-        consumer_timeout_ms=3000,                       # break connection if the consumer has fetched anything for 3 secs (e.g. in case of an empty topic)
-        auto_offset_reset='earliest',                   # automatically reset the offset to the earliest offset (should the current offset be deleted or anything)
+        consumer_timeout_ms=3000,                       
+        auto_offset_reset='earliest',                   
         enable_auto_commit=True,
-        #value_deserializer=lambda x: loads(x.decode('utf-8'))
         value_deserializer=lambda x: deserialize(schema, x)
     )
 
@@ -35,16 +34,10 @@ def get_data_init(**kwargs):
             #print(message.value)
             #print(type(message.value))
             df.append(message.value)
-            #new = pd.DataFrame(message.value)
-            #df.append(new)
         
         raw = pd.DataFrame(df)
-        print(raw)
+        #print(raw)
         raw.to_excel(open(os.getcwd()+kwargs['path_init']+"raw.xlsx", "wb"))
-        
-        #df1 = pd.concat(df, axis=0, ignore_index=True)
-        #print(df1.to_markdown)
-        #df1.to_excel(open(os.getcwd()+kwargs['path_init']+"raw.xlsx", "wb"))
 
     except Exception as e:
         print(e)
