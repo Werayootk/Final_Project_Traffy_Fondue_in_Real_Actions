@@ -8,6 +8,7 @@ def save_data_kmean(**kwargs):
     try:
         df = pd.read_excel(open(os.getcwd()+kwargs['path_read']+"raw.xlsx", "rb"))
         df = df.dropna(subset = ['type'])
+        df = df.drop_duplicates(subset = ['message_id'])
         df2 = df.set_index(['Unnamed: 0', 'message_id', 'type_id', 'org', 'comment', 'ticket_id', 'coords', 'photo', 'after_photo', 'address', 'district', 'subdistrict', 'province', 'timestamp', 'problem_type_abdul', 'status', 'star', 'count_reopen', 'state']).apply(lambda x: x.str.split(',').explode()).reset_index()
         df2[["long", "lat"]] = df2["coords"].str.strip(r"[[]]").str.replace("'","").str.split(",", expand=True).astype(np.str)
         df2 = df2.astype({'lat':'float','long':'float'})
