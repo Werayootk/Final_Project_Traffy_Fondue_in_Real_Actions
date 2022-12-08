@@ -1,0 +1,86 @@
+{
+   "type":"record",
+   "name":"schema.avro",
+   "namespace":"schema",
+   "fields":[
+      {
+         "name":"address",
+         "type":["null", "string"]
+      },
+      {
+         "name":"after_photo",
+         "type":["null", "string"]
+      },
+      {
+         "name":"comment",
+         "type":["null", "string"]
+      },
+      {
+         "name":"coords",
+         "type":{
+            "type":"array",
+            "items":"string"
+         }
+      },
+      {
+         "name":"count_reopen",
+         "type":["null", "string"]
+      },
+      {
+         "name":"district",
+         "type":["null", "string"]
+      },
+      {
+         "name":"message_id",
+         "type":["null", "string"]
+      },
+      {
+         "name":"org",
+         "type":["null", "string"]
+      },
+      {
+         "name":"photo",
+         "type":["null", "string"]
+      },
+      {
+         "name":"problem_type_abdul",
+         "type":["null", "string"]
+      },
+      {
+         "name":"province",
+         "type":["null", "string"]
+      },
+      {
+         "name":"star",
+         "type":["null", "string"]
+      },
+      {
+         "name":"state",
+         "type":["null", "string"]
+      },
+      {
+         "name":"status",
+         "type":["null", "string"]
+      },
+      {
+         "name":"subdistrict",
+         "type":["null", "string"]
+      },
+      {
+         "name":"ticket_id",
+         "type":["null", "string"]
+      },
+      {
+         "name":"timestamp",
+         "type":["null", "string"]
+      },
+      {
+         "name":"type",
+         "type":["null", "string"]
+      },
+      {
+         "name":"type_id",
+         "type":["null", "string"]
+      }
+   ]
+}
