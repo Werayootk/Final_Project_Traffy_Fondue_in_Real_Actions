@@ -31,8 +31,8 @@ def get_data_init(**kwargs):
 
     try:
         for message in consumer:
-            #print(message.value)
-            #print(type(message.value))
+            print(message.value)
+            print(type(message.value))
             df.append(message.value)
         
         raw = pd.DataFrame(df)
@@ -59,8 +59,8 @@ def update_data_daily(**kwargs):
 
     try:
         for message in consumer:
-            #print(message.value)
-            #print(type(message.value))
+            print(message.value)
+            print(type(message.value))
             df.append(message.value)
         
         raw = pd.DataFrame(df)

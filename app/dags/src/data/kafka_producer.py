@@ -8,6 +8,7 @@ import io
 import os
 from datetime import date
 from datetime import timedelta
+import logging
 
 def serialize(schema, obj):
     bytes_writer = io.BytesIO()
@@ -30,15 +31,26 @@ def load_data_init(**kwargs):
     data_info = requests.get(api_url)
     set_info = json.loads(data_info.text)
     data_length = set_info['total']
-    # data_length = 2000
 
-    for offset_limit in range(0,data_length,1000):
-        url = 'https://publicapi.traffy.in.th/share/teamchadchart/search?limit=1000&offset='+str(offset_limit)
-        response_API = requests.get(url)
-        info = json.loads(response_API.text)
-        for data in info['results']:
-             data_convert = serialize(schema, data)
-             producer.send('data', value=data_convert)
+    # Production
+    # for offset_limit in range(0,data_length, 1000):
+    #     url = 'https://publicapi.traffy.in.th/share/teamchadchart/search?limit=1000&offset='+str(offset_limit)
+    #     logging.info(url)
+    #     response_API = requests.get(url)
+    #     info = json.loads(response_API.text)
+    #     for data in info['results']:
+    #          data_convert = serialize(schema, data)
+    #          producer.send('data', value=data_convert)
+    # producer.close()
+
+    # For Testing
+    url = 'https://publicapi.traffy.in.th/share/teamchadchart/search?limit=1000&offset=0'
+    logging.info(url)
+    response_API = requests.get(url)
+    info = json.loads(response_API.text)
+    for data in info['results']:
+            data_convert = serialize(schema, data)
+            producer.send('data', value=data_convert)
     producer.close()
 
 def load_data_daily(**kwargs):
